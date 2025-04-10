@@ -73,6 +73,13 @@ def crea_quiz_con_numero(input_file, output_file):
                     indirizzo_risposta = f"{colonne_risposte[k]}{riga_risposte}"
                     nuovo_sheet[indirizzo_risposta] = risposta
 
+            righe_da_ottimizzare = list(range(7,47,2))
+
+            # Itera sulle righe specificate e imposta l'altezza su None per l'ottimizzazione
+            for numero_riga in righe_da_ottimizzare:
+                if numero_riga in nuovo_sheet.row_dimensions:
+                    nuovo_sheet.row_dimensions[numero_riga].height = None
+
         # Salva le modifiche nel file clonato (il file di output)
         workbook_output.save(output_file)
         print(f"Creato con successo il file: {output_file} con 20 fogli di quiz randomizzati (numero quiz aggiunto).")
